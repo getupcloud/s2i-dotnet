@@ -13,11 +13,4 @@ echo
 echo "---> Building application..."
 dotnet build
 
-export KESTREL_SERVER_URLS=${KESTREL_SERVER_URLS:-http://0.0.0.0:8080;http://0.0.0.0:8081}
-
-envsubst < hosting.json.template > hosting.json
-
-# Fix source directory permissions
 fix-permissions ./
-# set permissions for any installed artifacts
-fix-permissions /opt/app-root

@@ -8,7 +8,7 @@ ENV DOTNET_CORE_VERSION=1.0
 
 LABEL io.k8s.description="Platform for building and running .NET applications" \
       io.k8s.display-name=".NET Core-1.0" \
-      io.openshift.expose-services="5000:http" \
+      io.openshift.expose-services="8080:http" \
       io.openshift.tags="builder,.net,.netcore,dotnet,dotnetcore,asp.net,asp.netcore"
 
 # Install Apache httpd and PHP
@@ -23,9 +23,7 @@ RUN INSTALL_PKGS="libunwind libicu" && \
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 
-# Each language image can have 'contrib' a directory with extra files needed to
-# run and build the applications.
-#COPY ./contrib/ /opt/app-root
+COPY ./contrib/ /opt/app-root
 
 USER 1001
 

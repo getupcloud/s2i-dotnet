@@ -1,5 +1,9 @@
 #!/bin/bash
 
+export KESTREL_SERVER_URLS=${KESTREL_SERVER_URLS:-http://0.0.0.0:8080}
+
+envsubst < /opt/app-root/config/hosting.json.template > hosting.json
+
 ARGUMENTS_FILE="arguments.txt"
 
 if [[ -f "${ARGUMENTS_FILE}" ]]; then
@@ -9,4 +13,3 @@ else
     echo "---> Starting application..."
     dotnet run
 fi
-
