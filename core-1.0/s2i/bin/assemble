@@ -9,6 +9,7 @@ mv /tmp/src/* ./
 echo "---> Installing dependencies ..."
 dotnet restore
 
+echo
 echo "---> Building application..."
 dotnet build
 
