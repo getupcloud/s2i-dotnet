@@ -7,7 +7,7 @@ echo "---> Installing application source..."
 mv /tmp/src/* ./
 
 echo "---> Installing dependencies ..."
-dotnet restore
+dotnet restore --verbosity ${DOTNET_RESTORE_VERBOSITY:-Information}
 
 echo
 echo "---> Building application..."
