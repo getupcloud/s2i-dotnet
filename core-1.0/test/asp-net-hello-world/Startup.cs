@@ -40,6 +40,11 @@ namespace SampleApp
 
         public static void Main(string[] args)
         {
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("hosting.json", optional: true)
+                .Build();
+
             var host = new WebHostBuilder()
                 .UseKestrel(options =>
                 {
@@ -48,7 +53,7 @@ namespace SampleApp
                     options.UseHttps("testCert.pfx", "testPassword");
                     options.UseConnectionLogging();
                 })
-                .UseUrls("http://0.0.0.0:8080", "https://0.0.0.0:8081")
+                .UseConfiguration(config)
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
                 .Build();
