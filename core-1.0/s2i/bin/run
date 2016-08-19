@@ -8,7 +8,7 @@ ARGUMENTS_FILE="arguments.txt"
 
 if [[ -f "${ARGUMENTS_FILE}" ]]; then
     echo "---> Starting application with arguments from file '${ARGUMENTS_FILE}'..."
-    dotnet run -- $(<$ARGUMENTS_FILE)
+    dotnet run $(<$ARGUMENTS_FILE)
 else
     echo "---> Starting application..."
     dotnet run
