@@ -1,0 +1,15 @@
+#!/bin/bash
+
+export KESTREL_SERVER_URLS=${KESTREL_SERVER_URLS:-http://0.0.0.0:8080}
+
+envsubst < /opt/app-root/config/hosting.json.template > hosting.json
+
+ARGUMENTS_FILE="arguments.txt"
+
+if [[ -f "${ARGUMENTS_FILE}" ]]; then
+    echo "---> Starting application with arguments from file '${ARGUMENTS_FILE}'..."
+    dotnet run -- $(<$ARGUMENTS_FILE)
+else
+    echo "---> Starting application..."
+    dotnet run
+fi

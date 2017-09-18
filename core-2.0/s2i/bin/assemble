@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+shopt -s dotglob
+
+echo "---> Installing application source..."
+mv /tmp/src/* ./
+
+echo "---> Installing dependencies ..."
+dotnet restore --verbosity ${DOTNET_RESTORE_VERBOSITY:-Information}
+
+echo
+echo "---> Building application..."
+dotnet build
+
+fix-permissions ./
